@@ -62,14 +62,14 @@ div.text-show2 {
   appearance: none;
   width: 13px; /* Set a specific slider handle width */
   height: 13px; /* Slider handle height */
-  background: black; /* Green background */
+  background: rgb(178, 58, 58); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
   width: 13px; /* Set a specific slider handle width */
   height: 13px; /* Slider handle height */
-  background: black; /* Green background */
+  background: rgb(178, 58, 58); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 

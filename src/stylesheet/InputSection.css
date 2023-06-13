@@ -69,7 +69,7 @@ button.input-button {
   float: right;
   text-align: middle;
   border: none;
-  background-color: Black;
+  background-color: rgb(178, 58, 58);
   color: white;
   cursor: pointer;
 }

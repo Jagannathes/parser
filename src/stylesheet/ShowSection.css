@@ -27,6 +27,6 @@ div.text-show1 {
   position: relative;
   text-align: middle;
   border: none;
-  background-color: Black;
+  background-color: rgb(178, 58, 58);
   color: white;
 }
