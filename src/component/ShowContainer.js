@@ -207,8 +207,7 @@ class ShowContainer extends Component{
   componentDidUpdate() {
     this.showstep += 1;
   }
-
-  // 마지막 선택에서는 svg를 초기화 하지않도록 한다.
+  
   initiate = (time) => {
     const submitStack = this.props.submitStack;
     console.log('call initiate')
@@ -223,7 +222,7 @@ class ShowContainer extends Component{
   render() {
     return (
       <div className='show-container'>
-        <div className='text-show2'>DataStructure</div>
+        {/* <div className='text-show2'>DataStructure</div> */}
         <div className='slidercontainer'> 
           <div className='slidername'>speed bar</div>
           <input type='range' min={20} max={250} value={this.props.duration} onChange={e => this.props.changeDuration(e.target.value)} className='slider' />

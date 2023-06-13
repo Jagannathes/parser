@@ -8,7 +8,7 @@ import '../stylesheet/TopBar.css'
 const TopBar = ({github='', docLink='', operationCount}) =>
   <div className='top-bar'>
     <GithubPage github={github} />
-    <DocPage docLink={docLink} />
+    {/* <DocPage docLink={docLink} /> */}
     <OperationState operationCount={operationCount} />
   </div>
 

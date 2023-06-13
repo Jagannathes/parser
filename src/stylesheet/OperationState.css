@@ -7,4 +7,6 @@ div.operation-state {
 .op-section {
   vertical-align: middle;
   color: white;
+  float: right;
+  margin: 6px 20px;
 }

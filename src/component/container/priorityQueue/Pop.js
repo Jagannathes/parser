@@ -4,13 +4,6 @@ import PropTypes from 'prop-types'
 import '../../../stylesheet/container/priorityQueue/Pop.css'
 import {PriorityQueue} from 'js_dsal'
 
-/*
-애니메이션 과정
-1. index 0과 index size-1 을 바꿈
-2. index i에 대해 i*2+1, i*2+2를 순차대로비교하여 작은것과 바꿈
-3. 2를 바꿀게없을때 혹은 size보다 큰값이 나올때까지반복
-*/
-
 class Pop extends Component {
   // constructor
   constructor({stop, initiate, object, params, duration}) {
@@ -221,13 +214,11 @@ class Pop extends Component {
     DataNode({key: this.id, border: 'yellow', data: this.origin._elements[idx1].toString(), x: this.interval + this.width*(idx1pos), y: 50, "width": this.width}).map(n => nodeSvg.push(n))
     this.id += 1;
 
-    // 원래 index가 svg에 표현되어 있으면 걔도 색칠함 totalShow가 14임
     if (isSecondExpress) {
       DataNode({key: this.id, border: 'yellow', data: this.origin._elements[idx2].toString(), x: this.interval + this.width*(idx2pos), y: 50, "width": this.width}).map(n => nodeSvg.push(n))
       this.id += 1;
     }
 
-    // 비교해서 교환해야 한다면 교환
     if (change) {
       const temp = this.origin._elements[idx1]
       this.origin._elements[idx1] = this.origin._elements[idx2]

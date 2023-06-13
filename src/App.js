@@ -54,11 +54,10 @@ class App extends Component {
     })
   }
 
-  // 여기서 data와 code로 파싱한다음 nextStep 함수를 호출한다.
+  // code로 nextStep.
   shouldComponentUpdate(nexpProps, nextState) {
     console.log(this.state.submitStack, nextState.submitStack)
     if((this.state.submitStack !== nextState.submitStack)) {
-      // 파싱
       console.log('call nextStep in update')
       this.testDatas = parsing({inputCode: nextState.code, inputData: nextState.data});
       console.log(this.testDatas)
@@ -130,8 +129,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <TopBar github='https://github.com/hongjisung/JS_DataStructure_Visualization'
-                docLink='https://hongjisung.github.io/DataStructure/'
+        <TopBar github='https://github.com/Jagannathes/parser'
+                docLink='https://github.com/Jagannathes/parser'
                 operationCount={{count: 0}}/> 
         <ShowSection specificData={this.state.specificData} showSpecificData={this.showSpecificData} methodAnimation={this.state.methodAnimation} goMethod={this.goMethod} methodList={this.testDatas.filter(n=>n.executingCode)} duration={this.state.duration} changeDuration={this.changeDuration} changeStop={this.changeStop} stopShow = {this.state.stopShow} step={this.state.step} submitStack={this.state.submitStack} nextStep={this.nextStep} dataStates={this.state.dataStates} executingCode = {this.state.executingCode} containerState={this.state.containerState}/>
         <InputSection getCode={this.getCode} getData={this.getData}/>

@@ -2,7 +2,7 @@
   "name": "ds_front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hongjisung.github.io/JS_DataStructure_Visualization",
+  "homepage": "https://github.com/Jagannathes/parser",
   "dependencies": {
     "escodegen": "^2.0.0",
     "js_dsal": "^1.0.4",

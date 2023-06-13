@@ -4,22 +4,6 @@ import PropTypes from 'prop-types'
 import '../../../stylesheet/container/priorityQueue/Push.css'
 import {PriorityQueue} from 'js_dsal'
 
-/*
-애니메이션 과정
-0. origin 상태 보여줌
-1. 삽입위치에(i번째) 삽입
-2. i -> (i-1)/2 번째로 이동
-3. (i-1)/2번째와 compareFunction에 따라 비교
-4. 비교해서 true면 값을 바꾸고 1부터 다시 시작
-5. false 거나 (i-1)/2가 0이면 종료
-
-size, maxsize보여줌
-i -> i/2 표시
-중간에 stop
-
-full size일 때는 appear로 sizeup후 삽입
-*/
-
 class Push extends Component {
   // constructor
   constructor({stop, initiate, object, params, duration}) {
@@ -147,7 +131,6 @@ class Push extends Component {
     DataNode({key: this.id, border: 'yellow', data: this.origin._elements[nextindex].toString(), x: this.interval + this.width*(lastpoint), y: 50, "width": this.width}).map(n => nodeSvg.push(n))
     this.id += 1;
 
-    // 원래 index가 svg에 표현되어 있으면 걔도 색칠함 totalShow가 14임
     if (index <= nextindex + 14 - ((nextindex > 5) ? 7 : nextindex + 1)) {
       indexSvg.push(<text key={this.id}x={this.interval + this.width*(index - nextindex + lastpoint)} y={40} width={30} height={15}>index: {index}</text>)
       this.id += 1;
@@ -155,7 +138,6 @@ class Push extends Component {
       this.id += 1;
     }
 
-    // 비교해서 교환해야 한다면 교환
     const change = this.cmpfunc(this.origin._elements[nextindex], this.origin._elements[index]);
     if (change) {
       const temp = this.origin._elements[nextindex]
@@ -180,7 +162,6 @@ class Push extends Component {
 
     this.setState({index: nextindex, indexSvg, nodeSvg, step: this.state.step + 1})
 
-    // 다음이 0이거나 비교로 교환안됫으면 끝
     if (!nextindex || !change) {
       this.props.initiate((this.duration * 3 / 2)* 1000)
     } else {
