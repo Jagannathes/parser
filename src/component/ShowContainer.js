@@ -130,11 +130,11 @@ class ShowContainer extends Component{
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, this.props)
+    // console.log(nextProps, this.props)
     
     // duration change, clear initiate call
     if (this.props.duration !== nextProps && complexCollections.indexOf(nextProps.containerState.object.classname) === -1) {
-      console.log('call duration change')
+      // console.log('call duration change')
       clearTimeout(this.sto1)
       clearTimeout(this.sto2)
     }
@@ -147,7 +147,7 @@ class ShowContainer extends Component{
 
     // stopShow: true->false, do rendering
     if (this.props.stopShow && !nextProps.stopShow) {
-      console.log('true -> false')
+      // console.log('true -> false')
       clearTimeout(this.sto1);
       clearTimeout(this.sto2);
       this.setVisualize(nextProps)
@@ -158,7 +158,7 @@ class ShowContainer extends Component{
     if (!this.props.stopShow && nextProps.stopShow) {
       clearTimeout(this.sto1);
       clearTimeout(this.sto2);
-      console.log('clear timeout, stopShow true');
+      // console.log('clear timeout, stopShow true');
       this.setState({Stop: true})
       // this.sto1 = setTimeout(() => this.setState({Visualize: NextComp, Stop: false}), 50);
       return false;
@@ -187,7 +187,7 @@ class ShowContainer extends Component{
         this.stoNewSubmit = setTimeout(() => {
           clearTimeout(this.sto1);
           clearTimeout(this.sto2);
-          console.log('here');
+          // console.log('here');
           this.setVisualize(nextProps)
         },500)
       }
@@ -196,7 +196,7 @@ class ShowContainer extends Component{
 
     // show animation sequentially
     if (this.props.step + 1 === nextProps.step) {
-      console.log('step serial')      
+      // console.log('step serial')      
       this.setVisualize(nextProps)
       return false;
     }
@@ -210,8 +210,8 @@ class ShowContainer extends Component{
   
   initiate = (time) => {
     const submitStack = this.props.submitStack;
-    console.log('call initiate')
-    console.log(this.props.containerState.object)
+    // console.log('call initiate')
+    // console.log(this.props.containerState.object)
     this.sto1 = setTimeout(() => {
       // this.setState({Visualize: NextComp, Executing: EmptyComp, Stop: false})
       this.setState({Visualize: EmptyComp, Executing: EmptyComp, Stop: false})
@@ -230,7 +230,7 @@ class ShowContainer extends Component{
         <div className='text-show3'>Executing: </div>
         <this.state.Executing executing = {this.props.executingCode} step={this.props.step}/>
         <div className='drawing'>
-        {console.log('out: ', this.state.Visualize, this.props.containerState.object, this.props.stopShow)}
+        {/* {console.log('out: ', this.state.Visualize, this.props.containerState.object, this.props.stopShow)} */}
         <this.state.Visualize duration={Number(this.props.duration)/100} stop={this.state.Stop} initiate={this.initiate} object={this.props.containerState.object} params = {this.params}/>
         </div>
       </div>

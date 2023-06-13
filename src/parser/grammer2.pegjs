@@ -27,7 +27,7 @@
      function extractList(list, index) {
        return list.map(function(element) { return element[index]; });
      }
-   }}
+}}
    
    
    Start

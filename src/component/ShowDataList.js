@@ -24,7 +24,7 @@ class ShowDataList extends React.Component {
   }
 
   consolelog = (value) => {
-    console.log(value)
+    // console.log(value)
   }
 
   viewContainer = (data = null) => {

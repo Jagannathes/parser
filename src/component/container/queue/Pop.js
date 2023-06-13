@@ -22,7 +22,7 @@ const Pop = ({initiate=f=>f, object, params=[], duration = 1, stop = false}) => 
   queue._maxSize = origin._maxSize
   queue._begin = origin._begin
   queue._end = origin._end
-  console.log(queue)
+  // console.log(queue)
 
   let keyid = 1;
   const textSvg = [];

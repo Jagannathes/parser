@@ -9,7 +9,7 @@ class Pop extends Component {
   constructor({stop, initiate, object, params, duration}) {
     super()
     
-    console.log(object)
+    // console.log(object)
     this.origin = new PriorityQueue('', object.pq);
     this.maxSize = this.origin._maxSize;
     this.size = this.origin.size();
@@ -123,7 +123,7 @@ class Pop extends Component {
     // first left compare then right compare
     const left = this.state.index * 2 + 1;
     const right = left + 1;
-    console.log('left, right, this.size: ', left, right, this.size)
+    // console.log('left, right, this.size: ', left, right, this.size)
     // no left data
     if (left >= this.size) {
       this.setState({indexSvg: [<text key={this.id} x={this.interval} y={60} width={30} height={20}>No more compare data</text>], nodeSvg: [], step: this.state.step + 1})
@@ -191,7 +191,7 @@ class Pop extends Component {
 
     nodeSvg = nodeSvg.concat(this.compareTwoIndex(idx2, idx1, lastpoint, lastpoint - idx2 + idx1, isSecondExpress, change))
 
-    console.log(indexSvg, nodeSvg)
+    // console.log(indexSvg, nodeSvg)
     this.setState({indexSvg, nodeSvg, step: this.state.step + 1})
     return change;
   }

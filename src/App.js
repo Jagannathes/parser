@@ -56,11 +56,11 @@ class App extends Component {
 
   // code로 nextStep.
   shouldComponentUpdate(nexpProps, nextState) {
-    console.log(this.state.submitStack, nextState.submitStack)
+    // console.log(this.state.submitStack, nextState.submitStack)
     if((this.state.submitStack !== nextState.submitStack)) {
-      console.log('call nextStep in update')
+      // console.log('call nextStep in update')
       this.testDatas = parsing({inputCode: nextState.code, inputData: nextState.data});
-      console.log(this.testDatas)
+      // console.log(this.testDatas)
       this.nextStep(nextState.submitStack, nextState);
       return false
     }
@@ -74,8 +74,8 @@ class App extends Component {
     
     const nextstep = state.step + 1
     const lastvalue = this.testDatas.length 
-    console.log("stack: ",submitStack, state.submitStack)
-    console.log("step: ", nextstep, lastvalue)
+    // console.log("stack: ",submitStack, state.submitStack)
+    // console.log("step: ", nextstep, lastvalue)
       
     if (submitStack === state.submitStack && nextstep < lastvalue) {
       this.setState({
@@ -115,7 +115,7 @@ class App extends Component {
   }
 
   changeDuration = (value) => {
-    console.log('change duration: ', value)
+    // console.log('change duration: ', value)
     this.setState({
       duration: value,
       methodAnimation: true,

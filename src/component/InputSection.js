@@ -40,7 +40,7 @@ class InputSection extends Component {
   }
 
   changeShow = () => {
-    console.log('click')
+    // console.log('click')
     this.setState({ showCaution: !this.state.showCaution })
   }
 

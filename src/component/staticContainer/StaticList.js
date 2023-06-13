@@ -56,21 +56,21 @@ class StaticList extends React.Component {
 
   mouseDownEvent = (e) => {
     e.preventDefault();
-    console.log('down', e.clientX);
+    // console.log('down', e.clientX);
     this.click= true//!this.click;
     this.clickX = e.clientX;
   }
 
   mouseUpEvent = (e) => {
     e.preventDefault();
-    console.log('up', e.clientX);
+    // console.log('up', e.clientX);
     this.click= false;
   }
 
   mouseMoveEvent = (e) => {
     e.preventDefault();
     if(this.click) {
-      console.log('move', e.clientX);
+      // console.log('move', e.clientX);
       this.setState({xmove: this.state.xmove + (e.clientX - this.clickX)})
       this.clickX = e.clientX 
     }
