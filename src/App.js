@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import TopBar from './component/TopBar'
-import ShowSection from './component/ShowSection'
-import InputSection from './component/InputSection'
-import './App.css'
-import testDatas from './data/testDatas'
-import parsing from './data/parsing'
+import React, { Component } from "react";
+import TopBar from "./component/TopBar";
+import ShowSection from "./component/ShowSection";
+import InputSection from "./component/InputSection";
+import "./App.css";
+import testDatas from "./data/testDatas";
+import parsing from "./data/parsing";
 
 class App extends Component {
   constructor() {
-    super()
-    this.testDatas =  testDatas
+    super();
+    this.testDatas = testDatas;
     const start = 0;
     this.state = {
       dataStates: [],
-      executingCode: '',
-      containerState: {object:'', method: '', params:[]},
+      error: "",
+      executingCode: "",
+      containerState: { object: "", method: "", params: [] },
       step: -1,
       // executingCode: testDatas[start].executingCode,
       // containerState: testDatas[start].containerState,
@@ -23,48 +24,57 @@ class App extends Component {
       data: {},
       submitStack: 0, // this is for stop the executing process now.
       stopShow: false,
-      duration: '100',
+      duration: "100",
       methodAnimation: true,
       specificData: {},
-    }
+    };
   }
 
   getCode = (code) => {
     this.setState({
       dataStates: [],
-      executingCode: '',
-      containerState: {object:'', method: '', params:[]},
-      code, 
-      step: -1, 
-      submitStack: this.state.submitStack+1,
-      stopShow:false,
+      executingCode: "",
+      containerState: { object: "", method: "", params: [] },
+      code,
+      step: -1,
+      submitStack: this.state.submitStack + 1,
+      stopShow: false,
       methodAnimation: true,
-    })
-  }
+    });
+  };
   getData = (data) => {
     this.setState({
       dataStates: [],
-      executingCode: '',
-      containerState: {object:'', method: '', params:[]},
-      data, 
-      step: -1, 
-      submitStack: this.state.submitStack+1,
+      executingCode: "",
+      containerState: { object: "", method: "", params: [] },
+      data,
+      step: -1,
+      submitStack: this.state.submitStack + 1,
       stopShow: false,
       methodAnimation: true,
-    })
-  }
+    });
+  };
 
-  // code로 nextStep.
   shouldComponentUpdate(nexpProps, nextState) {
-    // console.log(this.state.submitStack, nextState.submitStack)
-    if((this.state.submitStack !== nextState.submitStack)) {
-      // console.log('call nextStep in update')
-      this.testDatas = parsing({inputCode: nextState.code, inputData: nextState.data});
-      // console.log(this.testDatas)
-      this.nextStep(nextState.submitStack, nextState);
-      return false
+    console.log(this.state.submitStack, nextState.submitStack);
+    if (this.state.submitStack !== nextState.submitStack) {
+      console.log("call nextStep in update");
+      let tree = parsing({
+        inputCode: nextState.code,
+        inputData: nextState.data,
+      });
+      console.log(tree)
+      if (tree.error == '') {
+        this.testDatas = tree.code;
+        console.log(this.testDatas);
+        this.nextStep(nextState.submitStack, nextState);
+      } else {
+        this.setState({ error: tree.error });
+        return true;
+      }
+      return false;
     }
-    return true 
+    return true;
   }
 
   nextStep = (submitStack, state = this.state) => {
@@ -83,25 +93,27 @@ class App extends Component {
         executingCode: this.testDatas[nextstep].executingCode,
         containerState: this.testDatas[nextstep].containerState,
         step: nextstep,
-        methodAnimation: true,})
+        methodAnimation: true,
+      });
     } else if (submitStack === state.submitStack && nextstep === lastvalue) {
       this.setState({
-        executingCode: '',
-        containerState: {object:'', method: '', params:[]},
-        code:``,
-        data:{},
+        executingCode: "",
+        containerState: { object: "", method: "", params: [] },
+        code: ``,
+        data: {},
         step: -1,
         stopShow: false,
         methodAnimation: true,
-      })
+      });
     }
-  }
+  };
 
   changeStop = () => {
     this.setState({
       stopShow: !this.state.stopShow,
-      methodAnimation: true,})
-  }
+      methodAnimation: true,
+    });
+  };
 
   goMethod = (idx) => {
     this.setState({
@@ -111,8 +123,8 @@ class App extends Component {
       containerState: this.testDatas[idx].containerState,
       step: idx,
       methodAnimation: true,
-    })
-  }
+    });
+  };
 
   changeDuration = (value) => {
     // console.log('change duration: ', value)
@@ -120,11 +132,11 @@ class App extends Component {
       duration: value,
       methodAnimation: true,
     });
-  }
+  };
 
   showSpecificData = (data) => {
-    this.setState({specificData:data, methodAnimation: false})
-  }
+    this.setState({ specificData: data, methodAnimation: false });
+  };
 
   render() {
     return (
@@ -133,7 +145,8 @@ class App extends Component {
                 docLink='https://github.com/Jagannathes/parser'
                 operationCount={{count: 0}}/> 
         <ShowSection specificData={this.state.specificData} showSpecificData={this.showSpecificData} methodAnimation={this.state.methodAnimation} goMethod={this.goMethod} methodList={this.testDatas.filter(n=>n.executingCode)} duration={this.state.duration} changeDuration={this.changeDuration} changeStop={this.changeStop} stopShow = {this.state.stopShow} step={this.state.step} submitStack={this.state.submitStack} nextStep={this.nextStep} dataStates={this.state.dataStates} executingCode = {this.state.executingCode} containerState={this.state.containerState}/>
-        <InputSection getCode={this.getCode} getData={this.getData}/>
+        <InputSection getCode={this.getCode} getData={this.getData}
+        error={this.state.error}/>
       </div>
     );
   }

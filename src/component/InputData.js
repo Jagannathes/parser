@@ -13,11 +13,12 @@ class InputData extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.error, nextProps.submit)
     if(nextProps.submit) {
-      this.props.getData(this.txtarea.value)
+      this.props.getData('')
     }
-    if (nextProps.sampleData !== ``) {
-      this.txtarea.value = nextProps.sampleData;
+    if (nextProps.error != ``) {
+      this.txtarea.value = nextProps.error
     }
   }
   render() {

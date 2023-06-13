@@ -40,13 +40,17 @@ const varFilter = 'variables.filter(nkffadv_43s => eval("typeof("+nkffadv_43s+")
 const parsing = ({inputCode='', inputData=''}) => {
   //{dataStates: array, executingCode: string, containerState:{object:object, method:string, params: array}}
   console.log(inputCode)
+  let error = ''
   try{
   const parseTree = parse(inputCode)
   console.log(parseTree)
   inputCode = escodegen.generate(parseTree)
   }catch(e){
-    console.log(e)
+    error = e.message
+
   }
+  if(error!='')
+   return {error}
   const visualizeDatas = [];
   const constructors = {'List': new std.List(),
     'Stack': new std.Stack(),
@@ -59,7 +63,7 @@ const parsing = ({inputCode='', inputData=''}) => {
     'MultiMapTree': new std.MultiMapTree(),
   }; 
   
-  eval('data = ' + inputData);
+  eval('data = {}');
   console.log(data);
   
 
@@ -78,7 +82,7 @@ const parsing = ({inputCode='', inputData=''}) => {
 
 
   eval(inputCode)
-  return visualizeDatas
+  return {code:visualizeDatas,error:''}
 }
 
 const findVariables = (code) => {
