@@ -4,6 +4,7 @@ import InputCode from './InputCode'
 import InputData from './InputData'
 import SampleCode from './SampleCode'
 import '../stylesheet/InputSection.css'
+import ShowErrors from './ShowError'
 
 class InputSection extends Component {
   constructor() {
@@ -64,8 +65,9 @@ class InputSection extends Component {
         <button className='input-button' onClick={input => this.setState({ submit: true })}>submit</button>
         <SampleCode changeSample={(code, data) => this.setState({ sampleCode: code, sampleData: data })} />
         <InputCode submit={this.state.submit} getCode={this.props.getCode} sampleCode={this.state.sampleCode} />
-        <div className='text-input2'>Input Data JSON</div>
-        <InputData submit={this.state.submit} getData={this.props.getData} sampleData = {this.state.sampleData} error={this.state.error}/>
+        <div className='text-input2'>Console</div>
+        <ShowErrors error={this.state.error}/>
+        {/* <InputData submit={this.state.submit} getData={this.props.getData} sampleData = {this.state.sampleData} error={this.state.error}/> */}
         {(this.state.showCaution)?
         <div className='coverDom'>
         <div className='cautionContent'>
