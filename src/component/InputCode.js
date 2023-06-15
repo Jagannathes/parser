@@ -17,12 +17,14 @@ class InputCode extends Component {
   constructor() {
     super()
     this.code = `
-var li = new List();
-li.pushBack(1);
-li.pushBack(2);
-li.pushBack(3);
-li.pushBack(4);
-li.pushBack(5);
+    var li = new List();
+    li.pushBack(1);
+    li.pushFront(2);
+    li.pushFront(3);
+    li.pushBack(4);
+    li.pushBack(5);
+    li.popBack();
+    li.popFront();
 `
   }
 
